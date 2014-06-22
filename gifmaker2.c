@@ -23,6 +23,11 @@ int main(int argc, char *argv[]) {
   for(i = 0; i < 3; i++) {
     if(i) {
       fclose(reader);
+      
+      if(argv[i][0] >= 'A' && argv[i][0] <= 'Z') {
+	argv[i][0] += ('a' - 'A');
+      }
+      
       reader = fopen(argv[i],"r");
       if(reader == NULL) {
 	printf("Invalid Pokemon name: %s\n",argv[i]);

@@ -91,9 +91,6 @@ int nsaves = 0;
 int startFrame, endFrame;
 int currentFrame = 0;
 
-int numMatrices = 0;
-
-
 int main(int argc, char *argv[]) {
   FILE *fp, *fp2;
   char line[500];
@@ -150,13 +147,9 @@ int main(int argc, char *argv[]) {
     callocPixels();
     
     mat4_delete(transform);
-    numMatrices--;
     transform = mat4_create_identity();
-    numMatrices++;
     mat4_delete(coords);
-    numMatrices--;
     coords = mat4_create(0);
-    numMatrices++;
 
 
     while(1) {
@@ -171,10 +164,7 @@ int main(int argc, char *argv[]) {
 
 	  double sx, sy, sz, rx, ry, rz, mx, my, mz;
 	  Mat4 *tmptrans = mat4_create_identity();
-	  numMatrices++;
 	  Mat4 *tmp = mat4_create(0);
-	  numMatrices++;
-
 	  sx = atof(splitline[2]);
 	  sy = atof(splitline[3]);
 	  sz = atof(splitline[4]);
@@ -235,12 +225,8 @@ int main(int argc, char *argv[]) {
 	  }
 	  
 	  mat4_delete(tmptrans);
-	  numMatrices--;
 	  mat4_delete(tmp);
-	  numMatrices--;
 	  fclose(import);
-
-	  //printf("After import, matrix count: %d\n",numMatrices);
 	} else if (!strcmp(splitline[0],"light")) {
 	  lights[lightNumber].r = atoi(splitline[1]);
 	  lights[lightNumber].g = atoi(splitline[2]);
@@ -276,15 +262,11 @@ int main(int argc, char *argv[]) {
 	} else if (!strcmp(splitline[0],"save")) {
 	  strcpy(snames[nsaves],splitline[1]);
 	  svals[nsaves] = mat4_copy(transform);
-	  numMatrices++;
 	  nsaves++;
 	} else if (!strcmp(splitline[0],"restore")) {
 	  for(i = 0; i < nsaves; i++) {
 	    if(!strcmp(splitline[1], snames[i])) {
-	      mat4_delete(transform);
-	      numMatrices--;
 	      transform = mat4_copy(svals[i]);
-	      numMatrices++;
 	      break;
 	    }
 	  }
@@ -294,9 +276,7 @@ int main(int argc, char *argv[]) {
 	  double x = 0, y = 0, z = 0;
 	  double sx, sy, sz, rx, ry, rz, mx, my, mz;
 	  Mat4 *tmptrans = mat4_create_identity();
-	  numMatrices++;
 	  Mat4 *tmp = mat4_create(0);
-	  numMatrices++;
 	  int nlong = NLONG;
 	  int nlat = NLAT;
 	  sx = atof(splitline[1]);
@@ -363,11 +343,7 @@ int main(int argc, char *argv[]) {
 	  }
 
 	  mat4_delete(tmptrans);
-	  numMatrices--;
 	  mat4_delete(tmp);
-	  numMatrices--;
-
-	  //printf("After drawing sphere, matrix count: %d\n",numMatrices);
 	} else if (!strcmp(splitline[0],"box-t")) {
 	  double sx = atof(splitline[1]);
 	  double sy = atof(splitline[2]);
@@ -387,10 +363,8 @@ int main(int argc, char *argv[]) {
 	  double v7[4] = {0.5, -0.5, -0.5, 1};
 	  double v8[4] = {0.5, 0.5, -0.5, 1};
 	  Mat4 *tmp = mat4_create(0);
-	  numMatrices++;
 	  Mat4 *tmptrans = mat4_create_identity();
-	  numMatrices++;	
-
+	
 	  tmptrans = move(tmptrans, mx, my, mz);
 	  tmptrans = rotatez(tmptrans, rz * M_PI/180.0);      
 	  tmptrans = rotatey(tmptrans, ry * M_PI/180.0);
@@ -457,11 +431,7 @@ int main(int argc, char *argv[]) {
 	  }
 
 	  mat4_delete(tmptrans);
-	  numMatrices--;
 	  mat4_delete(tmp);
-	  numMatrices--;
-
-	  //printf("After drawing box, matrix count: %d\n",numMatrices);
 	} else if (!strcmp(splitline[0],"move")) {
 	  transform = move(transform,atof(splitline[1]),atof(splitline[2]),atof(splitline[3]));
 	} else if (!strcmp(splitline[0],"scale")) {
@@ -497,30 +467,21 @@ int main(int argc, char *argv[]) {
 	  }
 	  
 	  mat4_delete(coords);
-	  numMatrices--;
 	  coords = mat4_create(0);
-	  numMatrices++;
 	} else if (!strcmp(splitline[0],"render-surface-parallel")) {
 	  colors[colorNumber].endcoord = mat4_columns(coords);
 	  int tempColorNumber = 0;
-
-	  //printf("Number of matrices before anything:%d\n",numMatrices);
 
 	  for(i = 0; i < mat4_columns(coords); i += 3) {
 	    while(i >= colors[tempColorNumber].endcoord) {
 	      tempColorNumber++;
 	    }
 
-	    //printf("Number of matrices before drawing triangle:%d\n",numMatrices);
-
 	    drawTriangle(mat4_get(coords,0,i),mat4_get(coords,1,i),mat4_get(coords,2,i),mat4_get(coords,0,i+1),mat4_get(coords,1,i+1),mat4_get(coords,2,i+1),mat4_get(coords,0,i+2),mat4_get(coords,1,i+2),mat4_get(coords,2,i+2), colors[tempColorNumber].kr, colors[tempColorNumber].kg, colors[tempColorNumber].kb, PARALLEL, SURFACE);
-	    //printf("Number of matrices after drawing triangle:%d\n\n",numMatrices);
 	  }
 	  
 	  mat4_delete(coords);
-	  numMatrices--;
 	  coords = mat4_create(0);
-	  numMatrices++;
 	} else if (!strcmp(splitline[0],"render-perspective-cyclops")) {
 	  colors[colorNumber].endcoord = mat4_columns(coords);
 	  int tempColorNumber = 0;
@@ -539,9 +500,7 @@ int main(int argc, char *argv[]) {
 
 	  
 	  mat4_delete(coords);
-	  numMatrices--;
 	  coords = mat4_create(0);
-	  numMatrices++;
 	} else if (!strcmp(splitline[0],"render-surface-perspective-cyclops")) {
 	  colors[colorNumber].endcoord = mat4_columns(coords);
 	  int tempColorNumber = 0;
@@ -555,7 +514,7 @@ int main(int argc, char *argv[]) {
 	      tempColorNumber++;
 	    }
 	    if(tempColorNumber > colorNumber) {
-	      printf("No surface color given or something\n");
+	      printf("wut\n");
 	    }
 
 	    drawTriangle(mat4_get(coords,0,i),mat4_get(coords,1,i),mat4_get(coords,2,i),mat4_get(coords,0,i+1),mat4_get(coords,1,i+1),mat4_get(coords,2,i+1),mat4_get(coords,0,i+2),mat4_get(coords,1,i+2),mat4_get(coords,2,i+2), colors[tempColorNumber].kr, colors[tempColorNumber].kg, colors[tempColorNumber].kb, PERSPECTIVE, SURFACE);
@@ -563,9 +522,7 @@ int main(int argc, char *argv[]) {
 
 	  
 	  mat4_delete(coords);
-	  numMatrices--;
 	  coords = mat4_create(0);
-	  numMatrices++;
 	} else if(!strcmp(splitline[0],"render-perspective-stereo")) {
 	  colors[colorNumber].endcoord = mat4_columns(coords);
 	  int tempColorNumber = 0;
@@ -593,12 +550,9 @@ int main(int argc, char *argv[]) {
 	  }
 
 	  mat4_delete(coords);
-	  numMatrices--;
 	  coords = mat4_create(0);
-	  numMatrices++;
 	} else if (!strcmp(splitline[0],"clear-triangles")) {
 	  coords = mat4_create(0);
-	  numMatrices++;
 	} else if (!strcmp(splitline[0],"clear-pixels")) {
 	  callocPixels();
 	} else if (!strcmp(splitline[0],"files")) {
@@ -693,7 +647,6 @@ int main(int argc, char *argv[]) {
 
     for(i = 0; i < nsaves; i++) {
       mat4_delete(svals[i]);
-      numMatrices--;
     }
     nsaves = 0;
 
@@ -701,7 +654,6 @@ int main(int argc, char *argv[]) {
     currentFrame++;
     colorNumber = -1;
     lightNumber = 0;
-    //printf("Matrix count: %d\n\n", numMatrices);
   }
 
   strcat(newargv[1],"*.ppm");
@@ -739,7 +691,6 @@ void drawTriangle(double x1, double y1, double z1, double x2, double y2, double 
     return;
 
   Mat4 *tmpcoords = mat4_create(3);
-  numMatrices++;
   mat4_set(tmpcoords,0,0,x1);
   mat4_set(tmpcoords,0,1,x2);
   mat4_set(tmpcoords,0,2,x3);
@@ -771,7 +722,6 @@ void drawTriangle(double x1, double y1, double z1, double x2, double y2, double 
      x1 > width + 10 || x2 > width + 10 || x3 > width + 10 || 
      y1 > height + 10 || y2 > height + 10 || y3 > height + 10) {
     mat4_delete(tmpcoords);
-    numMatrices--;
     return;
   }
 
@@ -882,7 +832,6 @@ void drawTriangle(double x1, double y1, double z1, double x2, double y2, double 
   }
 
   mat4_delete(tmpcoords);
-  numMatrices--;
 }
 
 
@@ -1118,15 +1067,10 @@ void fillPixel(int x, int y, int z, int r, int g, int b) {
 
 
 Mat4 *worldToView(Mat4 *coords) {
-  //Mat4 *result = mat4_create(mat4_columns(coords));
-  //numMatrices++;
   double screenw = xright - xleft;
   double screenh = ytop - ybottom;
   Mat4 *tmp = mat4_create_identity();
-  numMatrices++;
   Mat4 *tmp2 = mat4_create_identity();
-  numMatrices++;
-
   mat4_set(tmp, 0, 0, ((double) width)/screenw);
   mat4_set(tmp, 1, 1, ((double) -height)/screenh);
   mat4_set(tmp, 2, 2, ((double) width)/screenw);
@@ -1136,25 +1080,18 @@ Mat4 *worldToView(Mat4 *coords) {
   tmp = premultiply(tmp2,tmp);
   
   Mat4 *result = multiply(tmp, coords);
-  numMatrices++;
 
   mat4_delete(tmp);
-  numMatrices--;
-
   mat4_delete(tmp2);
-  numMatrices--;
 
   Mat4 *deleter = coords;
   mat4_delete(deleter);
-  numMatrices--;
 
   return result;
 }
 
 Mat4 *worldToPerspective(Mat4 *coords) {
   Mat4 *result = mat4_create(mat4_columns(coords));
-  numMatrices++;
-
   double i, x, y, z;
   for (i = 0; i < mat4_columns(coords); i++) {
     x = mat4_get(coords, 0, i);
@@ -1170,7 +1107,6 @@ Mat4 *worldToPerspective(Mat4 *coords) {
 
   Mat4 *deleter = coords;
   mat4_delete(deleter);
-  numMatrices--;
 
   return result;
 }
@@ -1211,50 +1147,35 @@ void callocPixels() {
 
 Mat4 *scale(Mat4 *coords, double sx, double sy, double sz) {
   Mat4 *tmp = mat4_create_identity();
-  numMatrices++;
-
   mat4_set(tmp,0,0,sx);
   mat4_set(tmp,1,1,sy);
   mat4_set(tmp,2,2,sz);
   Mat4 *result = multiply(coords, tmp);
-  numMatrices++;
-
   mat4_delete(tmp);
-  numMatrices--;
 
   Mat4 *deleter = coords;
-
   mat4_delete(deleter);
-  numMatrices--;
 
   return result;
 }
 
 Mat4 *rotatex(Mat4 *coords, double angle) {
   Mat4 *tmp = mat4_create_identity();
-  numMatrices++;
-
   mat4_set(tmp,1,1,cos(angle));
   mat4_set(tmp,1,2,-sin(angle));
   mat4_set(tmp,2,1,sin(angle));
   mat4_set(tmp,2,2,cos(angle));
   Mat4 *result = multiply(coords, tmp);
-  numMatrices++;
-
   mat4_delete(tmp);
-  numMatrices--;
 
   Mat4 *deleter = coords;
-
   mat4_delete(deleter);
-  numMatrices--;
 
   return result;
 }
 
 Mat4 *rotatey(Mat4 *coords, double angle) {
   Mat4 *tmp = mat4_create_identity();
-  numMatrices++;
 
   mat4_set(tmp,2,2,cos(angle));
   mat4_set(tmp,2,0,-sin(angle));
@@ -1262,59 +1183,44 @@ Mat4 *rotatey(Mat4 *coords, double angle) {
   mat4_set(tmp,0,0,cos(angle));
 
   Mat4 *result = multiply(coords, tmp);
-  numMatrices++;
 
   mat4_delete(tmp);
-  numMatrices--;
   
   Mat4 *deleter = coords;
-
   mat4_delete(deleter);
-  numMatrices--;
 
   return result;
 }
 
 Mat4 *rotatez(Mat4 *coords, double angle) {
   Mat4 *tmp = mat4_create_identity();
-  numMatrices++;
-    
   mat4_set(tmp,0,0,cos(angle));
   mat4_set(tmp,0,1,-sin(angle));
   mat4_set(tmp,1,0,sin(angle));
   mat4_set(tmp,1,1,cos(angle));
-
   Mat4 *result = multiply(coords, tmp);
-  numMatrices++;
-
   mat4_delete(tmp);
-  numMatrices--;
 
 
   Mat4 *deleter = coords;
-
   mat4_delete(deleter);
-  numMatrices--;
+
 
   return result;
 }
 
 Mat4 *move(Mat4 *coords, double mx, double my, double mz) {
   Mat4 *tmp = mat4_create_identity();
-  numMatrices++;
-
   mat4_set(tmp,0,3,mx);
   mat4_set(tmp,1,3,my);
   mat4_set(tmp,2,3,mz);
   Mat4 *result = multiply(coords, tmp);
-  numMatrices++;
-
   mat4_delete(tmp);
-  numMatrices--;  
-
+  
+ 
   Mat4 *deleter = coords;
   mat4_delete(deleter);
-  numMatrices--;
+
 
   return result;
 }

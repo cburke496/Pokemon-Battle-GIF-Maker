@@ -23,7 +23,8 @@ rotate-y rotation
 save origin
 
 
-move -2 -0.5 -10
+
+move -2 -0.5 -12
 scale 2 2 2
 surface-color .4 .2 0
 box-t .1 1 .1 0 0 0 0 0.5 0
@@ -32,10 +33,31 @@ surface-color 0 1 0
 import tree.3dt 1 1 1 0 0 0 0 0 0
 
 
+restore origin
+rotate-y 30
+move -2 -0.5 -12
+scale 2 2 2
+surface-color .4 .2 0
+box-t .1 1 .1 0 0 0 0 0.5 0
+
+surface-color 0 1 0 
+import tree.3dt 1 1 1 0 0 0 0 0 0
+
 
 restore origin
 rotate-y 60
-move -2 -0.5 -10
+move -2 -0.5 -12
+scale 2 2 2
+surface-color .4 .2 0
+box-t .1 1 .1 0 0 0 0 0.5 0
+
+surface-color 0 1 0 
+import tree.3dt 1 1 1 0 0 0 0 0 0
+
+
+restore origin
+rotate-y 90
+move -2 -0.5 -12
 scale 2 2 2
 surface-color .4 .2 0
 box-t .1 1 .1 0 0 0 0 0.5 0
@@ -46,7 +68,7 @@ import tree.3dt 1 1 1 0 0 0 0 0 0
 
 restore origin
 rotate-y 120
-move -2 -0.5 -10
+move -2 -0.5 -12
 scale 2 2 2
 surface-color .4 .2 0
 box-t .1 1 .1 0 0 0 0 0.5 0
@@ -54,11 +76,21 @@ box-t .1 1 .1 0 0 0 0 0.5 0
 surface-color 0 1 0 
 import tree.3dt 1 1 1 0 0 0 0 0 0
 
+
+restore origin
+rotate-y 150
+move -2 -0.5 -12
+scale 2 2 2
+surface-color .4 .2 0
+box-t .1 1 .1 0 0 0 0 0.5 0
+
+surface-color 0 1 0 
+import tree.3dt 1 1 1 0 0 0 0 0 0
 
 
 restore origin
 rotate-y 180
-move -2 -0.5 -10
+move -2 -0.5 -12
 scale 2 2 2
 surface-color .4 .2 0
 box-t .1 1 .1 0 0 0 0 0.5 0
@@ -66,11 +98,21 @@ box-t .1 1 .1 0 0 0 0 0.5 0
 surface-color 0 1 0 
 import tree.3dt 1 1 1 0 0 0 0 0 0
 
+
+restore origin
+rotate-y 210
+move -2 -0.5 -12
+scale 2 2 2
+surface-color .4 .2 0
+box-t .1 1 .1 0 0 0 0 0.5 0
+
+surface-color 0 1 0 
+import tree.3dt 1 1 1 0 0 0 0 0 0
 
 
 restore origin
 rotate-y 240
-move -2 -0.5 -10
+move -2 -0.5 -12
 scale 2 2 2
 surface-color .4 .2 0
 box-t .1 1 .1 0 0 0 0 0.5 0
@@ -78,11 +120,21 @@ box-t .1 1 .1 0 0 0 0 0.5 0
 surface-color 0 1 0 
 import tree.3dt 1 1 1 0 0 0 0 0 0
 
+
+restore origin
+rotate-y 270
+move -2 -0.5 -12
+scale 2 2 2
+surface-color .4 .2 0
+box-t .1 1 .1 0 0 0 0 0.5 0
+
+surface-color 0 1 0 
+import tree.3dt 1 1 1 0 0 0 0 0 0
 
 
 restore origin
 rotate-y 300
-move -2 -0.5 -10
+move -2 -0.5 -12
 scale 2 2 2
 surface-color .4 .2 0
 box-t .1 1 .1 0 0 0 0 0.5 0
@@ -90,6 +142,16 @@ box-t .1 1 .1 0 0 0 0 0.5 0
 surface-color 0 1 0 
 import tree.3dt 1 1 1 0 0 0 0 0 0
 
+
+restore origin
+rotate-y 330
+move -2 -0.5 -12
+scale 2 2 2
+surface-color .4 .2 0
+box-t .1 1 .1 0 0 0 0 0.5 0
+
+surface-color 0 1 0 
+import tree.3dt 1 1 1 0 0 0 0 0 0
 
 
 restore origin
