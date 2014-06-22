@@ -1,0 +1,72 @@
+vary walkrotationr 0 45 1 15
+vary walkrotationr 45 -45 16 45
+vary walkrotationr -45 0 46 60
+vary walkrotationl 0 -45 1 15
+vary walkrotationl -45 45 16 45
+vary walkrotationl 45 0 46 60
+
+
+vary wblastdist 0 0 1 8
+vary wblastdist 0 16 9 23
+vary wblastr 0 0 1 8
+vary wblastr .5 .5 9 23
+
+vary wblastdist 0 0 24 30
+vary wblastdist 0 16 31 45
+vary wblastr 0 0 24 30
+vary wblastr .5 .5 31 45
+
+vary wblastdist 0 0 46 60
+vary wblastr 0 0 46 60
+
+
+vary wbacknforth 0 1 1 20
+vary wbacknforth 1 -1 21 25
+vary wbacknforth -1 0 26 30 
+vary wbacknforth 0 1 31 40
+vary wbacknforth 1 -1 41 55
+vary wbacknforth -1 0 56 60 
+
+
+move 0 0.2 wbacknforth
+scale 0.5 0.5 0.5
+save origin
+surface-color 0 .5 1
+
+rotate-y 180
+move 0 2 wbacknforth
+rotate-y 180
+sphere-t wblastr wblastr wblastr 0 0 0 0 0 wblastdist
+restore origin
+
+sphere-t 1.5 1 1 0 0 0 0 2 0
+sphere-t 0.75 1 0.75 0 0 0 0 0 0
+sphere-t 0.4 0.4 1 0 0 0 0 -0.6 -1.5
+
+
+surface-color 1 0 1
+move 1.5 2 0
+box-t 1.5 0.2 0.2 0 0 0 0.75 0 0
+box-t 1 0.2 0.2 0 0 60 0.4 0.5 0
+box-t 1 0.2 0.2 0 0 -60 0.4 -0.5 0
+box-t 0.5 0.2 0.2 0 0 60 1 0.3 0
+box-t 0.5 0.2 0.2 0 0 -60 1 -0.3 0
+move -1.5 0 0
+rotate-y 180
+move 1.5 0 0
+box-t 1.5 0.2 0.2 0 0 0 0.75 0 0
+box-t 1 0.2 0.2 0 0 60 0.4 0.5 0
+box-t 1 0.2 0.2 0 0 -60 0.4 -0.5 0
+box-t 0.5 0.2 0.2 0 0 60 1 0.3 0
+box-t 0.5 0.2 0.2 0 0 -60 1 -0.3 0
+
+
+restore origin
+
+surface-color 0 .5 1
+rotate-x walkrotationl
+sphere-t 0.2 0.2 0.2 0 0 0 -0.3 -1.1 0
+restore origin
+rotate-x walkrotationr
+sphere-t 0.2 0.2 0.2 0 0 0 0.3 -1.1 0
+

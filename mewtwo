@@ -1,0 +1,152 @@
+#frames 1 30
+
+#screen -4 -4 4 4
+#pixels 500 500
+
+#vary rotation 0 360 1 30
+
+#vary eyez 4 4 1 30
+
+vary mblastdist 0 0 1 15
+vary mblastdist 0 8 16 30
+vary mblastr 0 0 1 15
+vary mblastr .5 .5 16 30
+
+vary mblastdist 0 0 31 40
+vary mblastdist 0 8 41 50
+vary mblastr 0 0 31 40
+vary mblastr .5 .5 41 50
+
+vary mblastdist 0 0 51 60
+vary mblastr 0 0 51 60
+
+
+vary backnforth 0 1 1 20
+vary backnforth 1 -1 21 25
+vary backnforth -1 0 26 30 
+vary backnforth 0 1 31 40
+vary backnforth 1 -1 41 55
+vary backnforth -1 0 56 60 
+
+
+#rotate-x 20
+#rotate-y rotation
+
+
+#light 255 255 255 4 0 eyez
+
+scale 0.75 0.75 0.75
+rotate-y 20
+move 0 2.75 backnforth
+
+
+save origin
+
+surface-color .95 .95 .95
+
+sphere-t 0.5 1.2 0.5 0 0 0 0 0 0
+
+sphere-t  0.4 0.5 0.4 0 0 0 -0.4 -1.0 0
+sphere-t  0.4 0.5 0.4 0 0 0 0.4 -1.0 0
+
+import cylinder.3dt 0.4 1 0.4 0 0 0 -0.4 -2 0
+import cylinder.3dt 0.4 1 0.4 0 0 0 0.4 -2 0
+
+box-t .4 .15 .8 20 0 0 -0.4 -3.25 .2
+box-t .4 .15 .8 20 0 0 0.4 -3.25 .2
+
+
+move -0.4 -3.25 .2
+rotate-x 20
+
+sphere-t 0.15 0.15 0.15 0 0 0 -.2 0 .4
+sphere-t 0.15 0.15 0.15 0 0 0 .2 0 .4
+
+restore origin
+
+
+move 0.4 -3.25 .2
+rotate-x 20
+
+sphere-t 0.15 0.15 0.15 0 0 0 -.2 0 .4
+sphere-t 0.15 0.15 0.15 0 0 0 .2 0 .4
+
+restore origin
+
+import cylinder.3dt 0.2 0.1 0.2 0 0 0 0 1.2 0
+
+sphere-t 0.7 0.7 0.7 0 0 0 0 2 0
+
+box-t 0.05 0.4 0.4 0 0 10 -0.6 2.5 0
+box-t 0.05 0.4 0.4 0 0 -10 0.6 2.5 0
+
+import cylinder.3dt 0.3 .75 0.3 90 -20 0 -0.6 0.9 .75
+move -0.6 0.9 .75
+rotate-y -20
+move 0 0 .75
+sphere-t 0.1 0.1 0.1 0 0 0 0 0.15 0
+rotate-z 120
+sphere-t 0.1 0.1 0.1 0 0 0 0 0.15 0
+rotate-z 120
+sphere-t 0.1 0.1 0.1 0 0 0 0 0.15 0
+
+surface-color .2 0 .1
+rotate-y 180
+move 0 0.5 backnforth
+rotate-y 180
+sphere-t mblastr mblastr mblastr 0 0 0 0 0 mblastdist
+surface-color .95 .95 .95
+
+restore origin
+move 0.2 0.9 0
+rotate-x -20
+rotate-z -60
+import cylinder.3dt 0.3 0.5 0.3 0 0 90 0.5 0 0
+move 1 0 0
+sphere-t 0.12 0.12 0.12 0 0 0 0 0 0
+rotate-z 60
+import cylinder.3dt 0.3 0.5 0.3 0 0 0 0 -0.5 0
+move 0 -1 0
+rotate-x 90
+sphere-t 0.1 0.1 0.1 0 0 0 0 0.2 0
+rotate-z 120
+sphere-t 0.1 0.1 0.1 0 0 0 0 0.2 0
+rotate-z 120
+sphere-t 0.1 0.1 0.1 0 0 0 0 0.2 0
+
+restore origin
+
+surface-color 1 0 1
+
+sphere-t 0.5 0.5 0.5 0 0 0 0 -0.7 0
+
+import cylinder.3dt 1 .5 1 90 0 0 0 -0.7 -.5
+
+move 0 -0.7 -1
+rotate-x 60
+sphere-t .4 .4 .4 0 0 0 0 0 0
+
+import cylinder.3dt .8 .9 .8 90 0 0 0 0 -0.9
+
+move 0 0 -1.8
+rotate-x -60
+sphere-t .32 .32 .32 0 0 0 0 0 0
+
+import cylinder.3dt .6 .4 .6 90 0 0 0 0 -0.4
+
+move 0 0 -0.8
+rotate-x -70
+sphere-t .24 .24 .24 0 0 0 0 0 0
+
+import cylinder.3dt .4 .8 .4 90 0 0 0 0 -0.8
+
+move 0 0 -1.6
+
+sphere-t .16 .16 .16 0 0 0 0 0 0
+
+
+#render-surface-perspective-cyclops 0 0 eyez
+
+#files mewtwo
+
+#end

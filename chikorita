@@ -1,0 +1,83 @@
+#frames 1 30
+
+#screen -4 -4 4 4
+#pixels 500 500
+
+#vary rotation 0 360 1 30
+
+#vary eyez 4 4 1 30
+
+
+vary cblastdist 0 0 1 8
+vary cblastdist 0 13 9 25
+vary cblastw 0 0 1 8
+vary cblastw .8 .8 9 25
+vary cblasth 0 0 1 8
+vary cblasth .1 .1 9 25
+
+vary cblastdist 0 0 26 33
+vary cblastdist 0 13 34 50
+vary cblastw 0 0 26 33
+vary cblastw .8 .8 34 50
+vary cblasth 0 0 26 33
+vary cblasth .1 .1 34 50
+
+vary cblastdist 0 0 51 60
+vary cblastw 0 0 51 60
+vary cblasth 0 0 51 60
+
+
+vary cbacknforth 0 1 1 7
+vary cbacknforth 1 -1 8 23
+vary cbacknforth -1 0 24 30
+vary cbacknforth 0 1 30 37
+vary cbacknforth 1 -1 38 53
+vary cbacknforth -1 0 54 60
+
+
+move cbacknforth 0 0
+scale 0.75 0.75 0.75
+move 0 0.6 0
+
+
+#rotate-x 20
+#rotate-y rotation
+
+
+#light 255 255 255 4 0 eyez
+
+save origin
+
+surface-color .2 .8 .2
+
+rotate-y 180
+move cbacknforth 0 0
+rotate-y 180
+box-t cblastw cblasth cblastw 0 0 0 0 0 cblastdist
+restore origin
+
+sphere-t 1 1 1.5 0 0 0 0 0 0
+
+sphere-t .9 1.2 .7 0 0 0 0 .42 .88
+
+
+box-t .2 .5 .2 0 0 0 0 1.86 .88
+
+move 0 2.11 .98
+
+box-t 1.5 .2 2 0 0 0 0 .1 -1
+
+restore origin
+
+sphere-t .2 .5 .2 0 0 0 -.7 -.8 .7
+sphere-t .2 .5 .2 0 0 0 .7 -.8 .7
+sphere-t .2 .5 .2 0 0 0 -.7 -.8 -.7
+sphere-t .2 .5 .2 0 0 0 .7 -.8 -.7
+
+sphere-t .2 .2 .2 0 0 0 0 0 -1.5
+
+#render-surface-perspective-cyclops 0 0 eyez
+
+#files chikorita
+
+#end
