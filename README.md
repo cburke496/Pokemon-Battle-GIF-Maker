@@ -5,11 +5,17 @@ Run:
 $ make
 
 $ ./gifmaker [pokemon_name_1] [pokemon_name_2]
-        where the pokemon names are from this list:
+
+   where the pokemon names are from this list:
+    	  
     	  -wooper
+	  
 	  -pichu
+	  
 	  -chikorita
+	  
 	  -mewtwo
+
 
 
 
