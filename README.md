@@ -1,13 +1,15 @@
 # Pokemon Battle GIF Maker (Computer Graphics Final Project):
 
-Run: make 
+Run: $ make 
 
-     ./gifmaker [pokemon_name_1] [pokemon_name_2]
+
+     $ ./gifmaker [pokemon_name_1] [pokemon_name_2]
         where the pokemon names are from this list:
     	  -wooper
 	  -pichu
 	  -chikorita
 	  -mewtwo
+
 
 
 This exports a GIF (named battle.gif) of the selected Pokemon battling, with a random winner.
